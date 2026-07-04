@@ -3,6 +3,7 @@ import ContactSection from '@/components/ContactSection';
 import FeaturedLaunch from '@/components/FeaturedLaunch';
 import PremiereCarousel from '@/components/PremiereCarousel';
 import Reveal from '@/components/Reveal';
+import { API_BASE } from '@/lib/api';
 
 type Film = {
   id: number;
@@ -17,7 +18,7 @@ type Film = {
 
 async function getFilms(): Promise<Film[]> {
   // Fetch the list of films from the API
-  const res = await fetch('http://localhost:8000/api/films', { cache: 'no-store' });
+  const res = await fetch(`${API_BASE}/films`, { cache: 'no-store' });
 
   if (!res.ok) {
     throw new Error('Failed to load films');

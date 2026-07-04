@@ -16,7 +16,16 @@ class Cors
             $response = $next($request);
         }
 
-        $response->headers->set('Access-Control-Allow-Origin', '*');
+        $allowed = config('cors.allowed_origins', ['*']);
+        $origin = $request->headers->get('Origin');
+
+        if (in_array('*', $allowed, true)) {
+            $response->headers->set('Access-Control-Allow-Origin', '*');
+        } elseif ($origin !== null && in_array($origin, $allowed, true)) {
+            $response->headers->set('Access-Control-Allow-Origin', $origin);
+            $response->headers->set('Vary', 'Origin');
+        }
+
         $response->headers->set('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, OPTIONS');
         $response->headers->set('Access-Control-Allow-Headers', 'Content-Type, X-Requested-With, Authorization');
 

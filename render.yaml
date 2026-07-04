@@ -1,0 +1,32 @@
+# Render Blueprint for the Premiere House Laravel API.
+# Deploy from the Render dashboard: New > Blueprint, then point it at this repo.
+services:
+  - type: web
+    name: premiere-house-api
+    runtime: docker
+    rootDir: api/laravel
+    dockerfilePath: ./Dockerfile
+    plan: free
+    healthCheckPath: /up
+    envVars:
+      - key: APP_NAME
+        value: "Premiere House"
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: "false"
+      # Generate locally with: php artisan key:generate --show
+      - key: APP_KEY
+        sync: false
+      # The public URL Render assigns this service, e.g.
+      # https://premiere-house-api.onrender.com
+      - key: APP_URL
+        sync: false
+      # The deployed Vercel frontend origin (drives CORS), e.g.
+      # https://premiere-house.vercel.app
+      - key: FRONTEND_URL
+        sync: false
+      - key: LOG_CHANNEL
+        value: stderr
+      - key: DB_CONNECTION
+        value: sqlite

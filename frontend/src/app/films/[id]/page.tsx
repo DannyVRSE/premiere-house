@@ -1,9 +1,10 @@
 import Link from 'next/link';
 import Countdown from '@/components/Countdown';
 import Reveal from '@/components/Reveal';
+import { API_BASE } from '@/lib/api';
 
 async function getFilm(id: string) {
-  const res = await fetch(`http://localhost:8000/api/films/${id}`, {
+  const res = await fetch(`${API_BASE}/films/${id}`, {
     cache: 'no-store',
   });
 
