@@ -1,6 +1,7 @@
 import Link from 'next/link';
 
 async function getFilms() {
+  // Fetch the list of films from the API
   const res = await fetch('http://localhost:8000/api/films', { cache: 'no-store' });
 
   if (!res.ok) {
@@ -14,9 +15,18 @@ export default async function Home() {
   const films = await getFilms();
 
   return (
-    <main className="min-h-screen bg-[linear-gradient(135deg,#080808_0%,#130a0b_40%,#0b0b0b_100%)] text-white">
+    <main className="min-h-screen bg-[#080808] text-white">
       <section className="relative overflow-hidden border-b border-white/10">
+        <img
+          src="/red-carpet-5.jpg"
+          alt=""
+          className="absolute inset-0 h-full w-full object-cover object-center"
+          loading="eager"
+          decoding="async"
+        />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,8,8,0.15)_0%,rgba(8,8,8,0.72)_65%,rgba(8,8,8,0.96)_100%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(255,140,0,0.22),_transparent_35%),radial-gradient(circle_at_bottom_right,_rgba(255,255,255,0.08),_transparent_25%)]" />
+        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#080808] via-[#080808]/80 to-transparent" />
         <div className="relative mx-auto flex max-w-7xl flex-col gap-10 px-6 py-20 lg:px-8 lg:py-28">
           <nav className="flex items-center justify-between text-sm uppercase tracking-[0.35em] text-zinc-400">
             <span className="font-semibold text-white">Premiere House</span>
@@ -61,7 +71,7 @@ export default async function Home() {
         </div>
       </section>
 
-      <section id="launches" className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
+      <section id="launches" className="mx-auto max-w-7xl bg-[#080808] px-6 py-20 lg:px-8">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p className="text-sm uppercase tracking-[0.35em] text-amber-300">Upcoming launches</p>
@@ -95,7 +105,7 @@ export default async function Home() {
         </div>
       </section>
 
-      <section id="about" className="border-t border-white/10 bg-black/20">
+      <section id="about" className="border-t border-white/10 bg-[#080808]">
         <div className="mx-auto grid max-w-7xl gap-10 px-6 py-20 lg:grid-cols-[0.95fr_1.05fr] lg:px-8">
           <div>
             <p className="text-sm uppercase tracking-[0.35em] text-amber-300">The company</p>
@@ -114,7 +124,7 @@ export default async function Home() {
         </div>
       </section>
 
-      <section id="contact" className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
+      <section id="contact" className="mx-auto max-w-7xl bg-[#080808] px-6 py-20 lg:px-8">
         <div className="rounded-[2rem] border border-white/10 bg-white/5 p-8 shadow-2xl shadow-black/20 backdrop-blur lg:p-10">
           <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
             <div>
