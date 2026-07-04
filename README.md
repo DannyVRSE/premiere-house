@@ -10,7 +10,7 @@ A premium, cinematic website for a film launch company built with a monorepo of 
 ### About
 ![About section](frontend/public/screenshots/about.png)
 
-### Slate
+### Luanch List
 ![Slate section](frontend/public/screenshots/slate.png)
 
 ### Film details
