@@ -7,14 +7,14 @@ A premium, cinematic website for a film launch company built with a monorepo of 
 ### Hero
 ![Hero section](frontend/public/screenshots/hero.png)
 
-### About
-![About section](frontend/public/screenshots/about.png)
-
 ### Luanch List
 ![Slate section](frontend/public/screenshots/slate.png)
 
 ### Film details
 ![Film details section](frontend/public/screenshots/details.png)
+
+### About
+![About section](frontend/public/screenshots/about.png)
 
 ### Newsletter
 ![Newsletter section](frontend/public/screenshots/newsletter.png)
