@@ -59,7 +59,7 @@ export default function Nav() {
             </Link>
           ))}
           <Link
-            href="/contact"
+            href="/contact#book"
             className="ml-2 rounded-full bg-amber-400 px-5 py-2 text-xs font-semibold uppercase tracking-[0.25em] text-zinc-950 shadow-lg shadow-amber-500/20 transition hover:bg-amber-300"
           >
             Book a launch
