@@ -10,19 +10,242 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-display);
 }
 
 html {
   scroll-behavior: smooth;
+  /* Refined thin scrollbar (Firefox) */
+  scrollbar-color: #2b2b2b var(--background);
+  scrollbar-width: thin;
 }
 
 body {
   margin: 0;
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
 }
 
 * {
   box-sizing: border-box;
+}
+
+/* Editorial serif display headings */
+.font-display {
+  font-family: var(--font-display), Georgia, "Times New Roman", serif;
+  letter-spacing: -0.01em;
+}
+
+/* Branded text selection */
+::selection {
+  background: rgba(252, 211, 77, 0.25);
+  color: #fff;
+}
+
+/* Refined thin scrollbar (WebKit) */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+::-webkit-scrollbar-thumb {
+  background: #2b2b2b;
+  border: 2px solid var(--background);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3a3a3a;
+}
+
+/* Accessible, on-brand focus rings */
+:focus-visible {
+  outline: 2px solid rgba(252, 211, 77, 0.6);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* Subtle cinematic film grain, fixed over the whole viewport */
+.grain {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---- Cinematic motion system ---- */
+
+/* Scroll-reveal: elements start hidden, animate in when .is-visible is added */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Slow ambient drift for background glows */
+@keyframes drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(2%, -3%, 0) scale(1.08);
+  }
+}
+.animate-drift {
+  animation: drift 18s ease-in-out infinite;
+}
+
+/* Gentle float for accent cards */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Sheen sweep across gold text / borders */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+.text-shimmer {
+  background: linear-gradient(
+    100deg,
+    #fcd34d 20%,
+    #fffbeb 40%,
+    #fcd34d 60%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 4.5s linear infinite;
+}
+
+/* Slow zoom for hero backdrops (Ken Burns) */
+@keyframes kenburns {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.12);
+  }
+}
+.animate-kenburns {
+  animation: kenburns 24s ease-out forwards;
+}
+
+/* Cinematic fade-up on mount (no scroll needed) */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-fade-up {
+  animation: fadeUp 1s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Soft pulse for the "live" premiere indicator */
+@keyframes pulseGlow {
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 0 0 rgba(252, 211, 77, 0.5);
+  }
+  50% {
+    opacity: 0.75;
+    box-shadow: 0 0 0 8px rgba(252, 211, 77, 0);
+  }
+}
+.animate-pulse-glow {
+  animation: pulseGlow 2.4s ease-in-out infinite;
+}
+
+/* Auto-flowing horizontal carousel. Content is duplicated once, so a -50%
+   shift loops seamlessly. Pauses when hovered. */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.marquee {
+  animation: marquee 48s linear infinite;
+}
+.marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Hide the native scrollbar on the manually-scrollable carousel */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Soft edge fades so cards drift in and out rather than hard-cutting */
+.edge-fade {
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 8%,
+    #000 92%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 8%,
+    #000 92%,
+    transparent
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .animate-drift,
+  .animate-float,
+  .text-shimmer,
+  .animate-kenburns,
+  .animate-fade-up,
+  .animate-pulse-glow,
+  .marquee {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }

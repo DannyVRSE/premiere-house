@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Inquiry;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 
@@ -47,9 +48,46 @@ class FilmController extends Controller
             'category' => 'Drama',
             'status' => 'In Development',
         ],
+        [
+            'id' => 4,
+            'title' => 'Gilded Ashes',
+            'tagline' => 'An empire of glass, a fire that remembers everything.',
+            'releaseDate' => '2026-09-05',
+            'premiereDate' => '2026-08-28',
+            'poster' => 'https://images.unsplash.com/photo-1440404653325-ab127d49abc1?auto=format&fit=crop&w=900&q=80',
+            'synopsis' => 'A dynasty of glassmakers guards a secret that could burn their fortune to the ground, until the youngest heir decides some truths are worth the flames.',
+            'cast' => ['Isolde Faye', 'Marcus Kane', 'Delphine Roux'],
+            'trailerUrl' => 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+            'category' => 'Epic',
+            'status' => 'Premiering Soon',
+        ],
+        [
+            'id' => 5,
+            'title' => 'Neon Requiem',
+            'tagline' => 'In a city that never sleeps, someone is dreaming for everyone.',
+            'releaseDate' => '2026-12-11',
+            'premiereDate' => '2026-12-04',
+            'poster' => 'https://images.unsplash.com/photo-1478720568477-152d9b164e26?auto=format&fit=crop&w=900&q=80',
+            'synopsis' => 'A memory-broker in a rain-soaked megacity discovers a stolen dream that could unravel the fragile peace between the living and the archived.',
+            'cast' => ['Kai Nakamura', 'Vera Lindqvist', 'Osei Boateng'],
+            'trailerUrl' => 'https://www.youtube.com/watch?v=aqz-KE-bpKQ',
+            'category' => 'Sci-Fi',
+            'status' => 'Awaiting Premiere',
+        ],
+        [
+            'id' => 6,
+            'title' => 'The Quiet Coast',
+            'tagline' => 'The tide always brings something back.',
+            'releaseDate' => '2027-02-20',
+            'premiereDate' => '2027-02-14',
+            'poster' => 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=80',
+            'synopsis' => 'When a detective retreats to a windswept fishing village to forget her last case, the disappearance of a local girl drags every buried secret back to the surface.',
+            'cast' => ['Freya Holt', 'Sebastian Ó Riain', 'Nadia Whitmore'],
+            'trailerUrl' => 'https://www.youtube.com/watch?v=ScMzIvxBSi4',
+            'category' => 'Mystery',
+            'status' => 'In Development',
+        ],
     ];
-
-    private array $inquiries = [];
 
     public function index(): JsonResponse
     {
@@ -75,14 +113,11 @@ class FilmController extends Controller
             'message' => ['required', 'string', 'max:2000'],
         ]);
 
-        $this->inquiries[] = [
-            ...$data,
-            'createdAt' => now()->toISOString(),
-        ];
+        Inquiry::create($data);
 
         return response()->json([
-            'message' => 'Your note has been captured. We will be in touch.',
             'success' => true,
+            'message' => 'Your note has been captured. We will be in touch.',
         ], 201);
     }
 }
