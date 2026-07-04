@@ -4,9 +4,23 @@ A premium, cinematic website for a film launch company built with a monorepo of 
 
 ## Screenshots
 
-![Premiere House hero](https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=1400&q=80)
+### Hero
+![Hero section](frontend/public/screenshots/hero.png)
 
-![Launch cards](https://images.unsplash.com/photo-1517602302552-471fe67acf66?auto=format&fit=crop&w=1400&q=80)
+### About
+![About section](frontend/public/screenshots/about.png)
+
+### Slate
+![Slate section](frontend/public/screenshots/slate.png)
+
+### Film details
+![Film details section](frontend/public/screenshots/details.png)
+
+### Newsletter
+![Newsletter section](frontend/public/screenshots/newsletter.png)
+
+### Contact
+![Contact section](frontend/public/screenshots/contact.png)
 
 ## Stack
 
