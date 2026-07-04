@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 async function getFilm(id: string) {
-  const res = await fetch(`http://localhost:4000/api/films/${id}`, {
+  const res = await fetch(`http://localhost:8000/api/films/${id}`, {
     cache: 'no-store',
   });
 

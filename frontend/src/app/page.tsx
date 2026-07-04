@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 async function getFilms() {
-  const res = await fetch('http://localhost:4000/api/films', { cache: 'no-store' });
+  const res = await fetch('http://localhost:8000/api/films', { cache: 'no-store' });
 
   if (!res.ok) {
     throw new Error('Failed to load films');
@@ -122,7 +122,7 @@ export default async function Home() {
               <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">Let’s build a launch story worth remembering.</h2>
               <p className="mt-4 max-w-xl text-lg leading-8 text-zinc-300">Share your next release or request a private briefing. We capture every inquiry in our API so the experience stays real and reliable.</p>
             </div>
-            <form action="http://localhost:4000/api/contact" method="post" className="space-y-4" target="_blank">
+            <form action="http://localhost:8000/api/contact" method="post" className="space-y-4" target="_blank">
               <input name="name" placeholder="Name" className="w-full rounded-2xl border border-white/10 bg-black/30 px-4 py-3 text-sm outline-none ring-0" />
               <input name="email" type="email" placeholder="Email" className="w-full rounded-2xl border border-white/10 bg-black/30 px-4 py-3 text-sm outline-none ring-0" />
               <textarea name="message" rows={4} placeholder="What are you launching?" className="w-full rounded-2xl border border-white/10 bg-black/30 px-4 py-3 text-sm outline-none ring-0" />
